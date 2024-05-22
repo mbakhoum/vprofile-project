@@ -8,11 +8,11 @@ pipeline{
         NEXUSPORT = '8081'
         NEXUSIP = '172.31.20.128'
         NEXUS_GRP_REPO = 'vpro-maven-group'
-        SNAP-REPO = 'vprofile-snapshot'
-        RELEASE-REPO = 'vprofile-release'
-        CENTRAL-REPO = 'vpro-maven-central'
-        NEXUS-USER = 'admin'
-        NEXUS-PASS = 'admin123'
+        SNAP_REPO = 'vprofile-snapshot'
+        RELEASE_REPO = 'vprofile-release'
+        CENTRAL_REPO = 'vpro-maven-central'
+        NEXUS_USER = 'admin'
+        NEXUS_PASS = 'admin123'
 
     }
     stages{
