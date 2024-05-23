@@ -15,6 +15,7 @@ pipeline{
         NEXUS_PASS = 'admin123'
         SONARSCANNER = 'sonarscanner'
         SONARSERVER = 'sonarserver'
+        NEXUS_LOGIN = 'nexuslogin'
 
     }
     stages{
@@ -63,6 +64,25 @@ pipeline{
                     // true = set pipeline to UNSTABLE, false = don't
                     waitForQualityGate abortPipeline: true
                }
+            }
+        }
+        stage('Upload Artifcat'){
+            steps{
+                  nexusArtifactUploader(
+                  nexusVersion: 'nexus3',
+                  protocol: 'http',
+                  nexusUrl: "${NEXUSIP}:${NEXUSPORT}",
+                  groupId: 'QA',
+                  version: "${env.BUILD_ID}-${env.BUILD_TIMESTAMP}",
+                  repository: "${RELEASE_REPO}",
+                  credentialsId: "${NEXUS_LOGIN}",
+                  artifacts: [
+                    [artifactId: 'vproapp',
+                     classifier: '',
+                     file: 'target/vprofile-v2.war',
+                     type: 'war']
+                  ]
+                )
             }
         }
     }
